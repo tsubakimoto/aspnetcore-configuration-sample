@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KeyVaultSamples.Web.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace KeyVaultSamples.Web
 {
@@ -33,6 +35,12 @@ namespace KeyVaultSamples.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            var clientId = Configuration["ServicePrincipal:ClientId"]; //in Enviroment Variables
+            var secret1 = Configuration["secret1"]; //in KeyVault
+            var secret2 = JsonConvert.DeserializeObject<Secret2>(Configuration["secret2"]); //in KeyVault
+            //var secret2 = JsonConvert.DeserializeObject<Secret2>(Configuration["MyOption:secret2"]);
+            //var secret2 = JsonConvert.DeserializeObject<Secret2>(Configuration.GetSection("MyOption")["secret2"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
