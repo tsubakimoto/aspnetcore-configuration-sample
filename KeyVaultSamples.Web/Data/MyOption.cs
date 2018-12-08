@@ -1,11 +1,6 @@
 ﻿namespace KeyVaultSamples.Web.Data
 {
-    public class Secret2
-    {
-        public Myoption MyOption { get; set; }
-    }
-
-    public class Myoption
+    public class MyOption
     {
         public string Hoge { get; set; }
         public string Fuga { get; set; }

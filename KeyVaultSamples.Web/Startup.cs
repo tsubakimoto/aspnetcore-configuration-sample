@@ -38,9 +38,9 @@ namespace KeyVaultSamples.Web
 
             var clientId = Configuration["ServicePrincipal:ClientId"]; //in Enviroment Variables
             var secret1 = Configuration["secret1"]; //in KeyVault
-            var secret2 = JsonConvert.DeserializeObject<Secret2>(Configuration["secret2"]); //in KeyVault
-            //var secret2 = JsonConvert.DeserializeObject<Secret2>(Configuration["MyOption:secret2"]);
-            //var secret2 = JsonConvert.DeserializeObject<Secret2>(Configuration.GetSection("MyOption")["secret2"]);
+            var myoption1 = JsonConvert.DeserializeObject<MyOption>(Configuration.GetSection("MyOption")["secret2"]); //in KeyVault, working
+            var myoption2 = new MyOption(); Configuration.GetSection("MyOption").Bind("secret2", myoption2); //in KeyVault, not working
+            var myoption3 = Configuration.GetSection("MyOption").Get<MyOption>(); //in appsettings.Development.json
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
